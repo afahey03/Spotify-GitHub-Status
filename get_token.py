@@ -1,5 +1,4 @@
 import webbrowser
-import sys
 import requests
 import base64
 import urllib.parse
@@ -196,4 +195,5 @@ else:
     except:
         print(f"Raw response: {response.text}")
         
+
 print("\n" + "=" * 70)

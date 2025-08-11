@@ -17,7 +17,6 @@ SPOTIFY_REFRESH_TOKEN = os.getenv("SPOTIFY_REFRESH_TOKEN")
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 POLL_INTERVAL = float(os.getenv("POLL_INTERVAL", "15"))
-STATUS_PREFIX = os.getenv("STATUS_PREFIX", "🎵 ")
 CLEAR_STATUS_WHEN_IDLE = os.getenv("CLEAR_STATUS_WHEN_IDLE", "true").lower() in ("1", "true", "yes")
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 
@@ -128,7 +127,7 @@ def get_current_playing(access_token):
 
         name = data["item"]["name"]
         artists = ", ".join(a["name"] for a in data["item"]["artists"])
-        message = f"{STATUS_PREFIX}{name} by {artists}"
+        message = f"Listening to {name} by {artists}"
 
         progress_ms = data.get("progress_ms", 0)
         duration_ms = data["item"].get("duration_ms", 0)
@@ -159,8 +158,8 @@ def set_github_status(message, expires_at=None):
         else:
             query = """
             mutation($message: String!, $expiresAt: DateTime) {
-              changeUserStatus(input: { message: $message, expiresAt: $expiresAt }) {
-                status { message expiresAt }
+              changeUserStatus(input: { emoji: ":musical_note:", message: $message, expiresAt: $expiresAt }) {
+                status { emoji message expiresAt }
               }
             }
             """
@@ -277,3 +276,4 @@ if __name__ == "__main__":
         logging.error("Fatal error: %s", e)
 
         sys.exit(1)
+

@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 import sys
 import requests
 import re
-from dotenv import load_dotenv, set_key, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -275,4 +275,5 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         logging.error("Fatal error: %s", e)
+
         sys.exit(1)

@@ -4,6 +4,7 @@
 
 ## What to do:
 - Create a Spotify app and set your URI to "https://example.com/callback".
+- Create a GitHub classic access token.
 - Add a .env file and include fields for your Spotify client ID, client secret, refresh token, and GitHub token.
 - Run get_token.py to update your .env with your refresh token.
 - Run spotifygithub.py, and watch your status update.
